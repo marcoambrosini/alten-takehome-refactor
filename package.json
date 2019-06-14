@@ -1,0 +1,27 @@
+{
+  "name": "alten-takehome-refactor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "refactor.js",
+  "scripts": {
+    "test": "test",
+    "start": "nodemon --exec babel-node refactor.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ma12-co/alten-takehome-refactor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ma12-co/alten-takehome-refactor/issues"
+  },
+  "homepage": "https://github.com/ma12-co/alten-takehome-refactor#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/node": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {}
+}
