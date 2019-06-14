@@ -1,6 +1,6 @@
 <!-- @format -->
 
-# Ejercicio takehome para Alten
+# Ejercicio refactor takehome para Alten
 
 Para ejecutar, seguir los siguientes steps:
 
@@ -8,3 +8,5 @@ Para ejecutar, seguir los siguientes steps:
 - `cd alten-takehome-refactor`
 - `npm install`
 - `npm start`
+
+El source code se encuentra en src/refactor.js

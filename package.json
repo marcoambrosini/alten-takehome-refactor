@@ -2,10 +2,10 @@
   "name": "alten-takehome-refactor",
   "version": "1.0.0",
   "description": "",
-  "main": "refactor.js",
+  "main": "src/refactor.js",
   "scripts": {
     "test": "test",
-    "start": "nodemon --exec babel-node refactor.js"
+    "start": "nodemon --exec babel-node src/refactor.js"
   },
   "repository": {
     "type": "git",
