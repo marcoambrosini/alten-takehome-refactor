@@ -2002,34 +2002,35 @@ const createSummaryComarca = (comarca) => {
 }
 
 
+const createStats = (data, entry) => { 
+    let stats =  {
+        numeroComarcasMasHombres: 0,
+        numeroComarcasMasMujeres: 0,
+        numeroComarcasTotal: 0,
+        numeroTotalHabitantesHombres: 0,
+        numeroTotalHabitantesMujeres: 0,
+        numeroTotalHabitantes: 0
+    }
+
+    stats.numeroComarcasMasHombres = entry.filter(comarca => comarca.malePercent > comarca.femalePercent).length
+    stats.numeroComarcasMasMujeres = entry.filter(comarca => comarca.malePercent < comarca.femalePercent).length
+    stats.numeroComarcasTotal = entry.length
+    stats.numeroTotalHabitantesHombres = data.entry.map(x => Number(x['cross:DataSet']['cross:Section']['cross:Obs'][0].OBS_VALUE)).reduce((a, b) => a+b)
+    stats.numeroTotalHabitantesMujeres = data.entry.map(x => Number(x['cross:DataSet']['cross:Section']['cross:Obs'][1].OBS_VALUE)).reduce((a, b) => a+b)
+    stats.numeroTotalHabitantes = stats.numeroTotalHabitantesHombres + stats.numeroTotalHabitantesMujeres
+
+    return stats
+}
+
 
 const createGlobalSummary = ((data) => {
     let summary = {
-        stats: {
-            numeroComarcasMasHombres: 0,
-            numeroComarcasMasMujeres: 0,
-            numeroComarcasTotal: 0,
-            numeroTotalHabitantesHombres: 0,
-            numeroTotalHabitantesMujeres: 0,
-            numeroTotalHabitantes: 0
-        },
         entry: []
     }
-    
     summary.entry = data.entry.map( comarca => createSummaryComarca(comarca))
-
-    summary.stats.numeroComarcasMasHombres = summary.entry.filter(comarca => comarca.malePercent > comarca.femalePercent).length
-
-    summary.stats.numeroComarcasMasMujeres = summary.entry.filter(comarca => comarca.malePercent < comarca.femalePercent).length
-
-    summary.stats.numeroComarcasTotal = summary.entry.length
-
-    summary.stats.numeroTotalHabitantesHombres = data.entry.map(x => Number(x['cross:DataSet']['cross:Section']['cross:Obs'][0].OBS_VALUE)).reduce((a, b) => a+b)
-
-    summary.stats.numeroTotalHabitantesMujeres = data.entry.map(x => Number(x['cross:DataSet']['cross:Section']['cross:Obs'][1].OBS_VALUE)).reduce((a, b) => a+b)
-
-
-    summary.stats.numeroTotalHabitantes = summary.stats.numeroTotalHabitantesHombres + summary.stats.numeroTotalHabitantesMujeres
+    summary.stats = createStats(data, summary.entry)
+    
+    
     console.log(summary)
     return summary
 })(data)
